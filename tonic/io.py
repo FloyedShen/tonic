@@ -6,6 +6,8 @@ import numpy as np
 events_struct = [("x", np.int16), ("y", np.int16), ("t", np.int64), ("p", bool)]
 
 # many functions in this file have been copied from https://gitlab.com/synsense/aermanager/-/blob/master/aermanager/parsers.py
+
+
 def make_structured_array(x, y, t, p, dtype=events_struct):
     """
     Make a structured array given lists of x, y, t, p
@@ -19,6 +21,12 @@ def make_structured_array(x, y, t, p, dtype=events_struct):
         xytp: numpy structured array
     """
     return np.fromiter(zip(x, y, t, p), dtype=dtype)
+
+def read_aedat(in_file):
+    import aedat
+    event_data = aedat.Decoder(in_file)
+    events = event_data["events"]
+    return events
 
 
 def read_aedat4(in_file):
@@ -194,7 +202,7 @@ def read_aedat_header_from_file(filename):
         # Read the rest of the line
         head = str(f.readline())
         if "!AER-DAT" in head:
-            data_version = float(head[head.find("!AER-DAT") + 8 : -5])
+            data_version = float(head[head.find("!AER-DAT") + 8: -5])
         is_comment = "#" in str(f.read(1))
         count += 1
     data_start = f.seek(-1, 1)

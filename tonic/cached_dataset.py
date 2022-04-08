@@ -1,4 +1,5 @@
 import os
+import time
 import shutil
 import h5py
 import numpy as np
@@ -153,7 +154,14 @@ def save_to_disk_cache(
         file_path: caching file path.
         compression: Whether to apply compression. (default = True - uses lzf compression)
     """
-    with h5py.File(file_path, "w") as f:
+    while True:
+        try:
+            hdf5_file = h5py.File(file_path, 'w')
+            break  # Success!
+        except OSError:
+            time.sleep(5)
+    with hdf5_file as f:
+    # with h5py.File(file_path, "w") as f:
         for name, data in zip(["data", "target"], [data, targets]):
             if type(data) != tuple:
                 data = (data,)

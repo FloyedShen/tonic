@@ -26,10 +26,10 @@ class NCALTECH101(Dataset):
         target_transform (callable, optional): A callable of transforms to apply to the targets/labels.
     """
 
-    url = "https://www.dropbox.com/sh/iuv7o3h2gv6g4vd/AADYPdhIBK7g_fPCLKmG6aVpa?dl=1"
+    url = "https://data.mendeley.com/public-files/datasets/cy6cvx3ryv/files/36b5c52a-b49d-4853-addb-a836a8883e49/file_downloaded"
     filename = "N-Caltech101-archive.zip"
-    file_md5 = "989af2c704103341d616b748b5daa70c"
-    data_filename = "Caltech101.zip"
+    file_md5 = "66201824eabb0239c7ab992480b50ba3"
+    data_filename = "N-Caltech101-archive.zip"
     folder_name = "Caltech101"
     cls_count = [467,
                  435, 200, 798, 55, 800, 42, 42, 47, 54, 46,

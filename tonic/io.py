@@ -22,6 +22,7 @@ def make_structured_array(x, y, t, p, dtype=events_struct):
     """
     return np.fromiter(zip(x, y, t, p), dtype=dtype)
 
+
 def read_aedat(in_file):
     import aedat
     event_data = aedat.Decoder(in_file)
